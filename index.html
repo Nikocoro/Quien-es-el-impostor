@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impostor Fútbol</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-md mx-auto">
+
+        <!-- FASE 1: Pantalla de Configuración -->
+        <div id="setup-screen" class="space-y-6 fade-in">
+            <h1 class="text-4xl font-bold text-center text-blue-400">Impostor Fútbol</h1>
+            
+            <!-- Sección para agregar jugadores -->
+            <div>
+                <h2 class="text-xl font-bold mb-2">1. Añade los Jugadores (4-10)</h2>
+                <div class="flex space-x-2">
+                    <input type="text" id="player-name-input" placeholder="Nombre del jugador" class="flex-grow bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button id="add-player-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">Añadir</button>
+                </div>
+                <ul id="player-list" class="mt-3 bg-gray-800 p-3 rounded-lg min-h-[50px] space-y-1">
+                    <!-- Los jugadores se agregarán aquí -->
+                </ul>
+            </div>
+
+            <!-- Sección para elegir categoría -->
+            <div>
+                <h2 class="text-xl font-bold mb-2">2. Elige la Categoría</h2>
+                <div id="category-selector" class="grid grid-cols-3 gap-2">
+                    <button data-category="leyenda" class="category-btn bg-gray-700 hover:bg-gray-600 font-bold py-2 px-4 rounded-lg transition-colors">Leyendas</button>
+                    <button data-category="actual" class="category-btn bg-gray-700 hover:bg-gray-600 font-bold py-2 px-4 rounded-lg transition-colors">Actuales</button>
+                    <button data-category="mixto" class="category-btn bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors">Mixto</button>
+                </div>
+            </div>
+
+            <!-- Botón para comenzar el juego -->
+            <button id="start-game-btn" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg text-xl transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed" disabled>
+                Comenzar Juego
+            </button>
+        </div>
+
+        <!-- FASE 2: Pantalla de Revelación de Roles -->
+        <div id="reveal-screen" class="hidden text-center space-y-6 fade-in">
+            <h2 id="reveal-instruction" class="text-2xl font-bold"></h2>
+            <div id="role-container" class="bg-gray-800 rounded-lg p-8 min-h-[200px] flex items-center justify-center cursor-pointer">
+                <p id="role-prompt" class="text-xl text-gray-400">Toca para ver tu rol</p>
+                <div id="role-display" class="hidden text-center">
+                    <p id="role-text" class="text-3xl font-bold"></p>
+                    <p id="player-text" class="text-xl mt-2 text-blue-300"></p>
+                </div>
+            </div>
+            <button id="next-player-btn" class="hidden w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-xl transition-colors">
+                Ocultar y Pasar al Siguiente
+            </button>
+        </div>
+
+        <!-- FASE 3: Pantalla de Juego en Curso -->
+        <div id="playing-screen" class="hidden text-center space-y-6 fade-in">
+            <h2 class="text-5xl font-bold text-blue-400">¡A Jugar!</h2>
+            <p class="text-xl">Dejen el teléfono a un lado.<br>Empiecen a dar sus palabras clave.</p>
+            <button id="end-game-btn" class="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-4 rounded-lg text-xl transition-colors">
+                Revelar Resultados
+            </button>
+        </div>
+        
+        <!-- FASE 4: Pantalla Final -->
+        <div id="final-screen" class="hidden text-center space-y-6 fade-in">
+            <h2 id="final-title" class="text-4xl font-bold">¡Juego Terminado!</h2>
+            <div class="bg-gray-800 rounded-lg p-6">
+                <p id="final-impostor-text" class="text-xl"></p>
+                <p id="final-player-text" class="text-xl mt-2"></p>
+            </div>
+            <button id="play-again-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-xl transition-colors">
+                Jugar de Nuevo
+            </button>
+        </div>
+
+    </div>
+</body>
+</html>
+    <script src="script.js"></script>
+</body>
+</html>
